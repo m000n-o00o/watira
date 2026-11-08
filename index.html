@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>مهارة وتيرة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{
+  --bg:#f1f1f6; --surface:#ffffff; --ink:#16182b; --muted:#5d6178; --line:#dcdde8;
+  --accent:#a9b0ff; --accent-ink:#4f55a8; --accent-soft:#e8e9fb; --on-accent:#16182b;
+  --display:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --body:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11121c; --surface:#1a1c2a; --ink:#e8e9f3; --muted:#9a9db5; --line:#2b2e42;
+  --accent:#9aa3ff; --accent-ink:#9aa3ff; --accent-soft:#23264a; --on-accent:#11121c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11121c; --surface:#1a1c2a; --ink:#e8e9f3; --muted:#9a9db5; --line:#2b2e42;
+  --accent:#9aa3ff; --accent-ink:#9aa3ff; --accent-soft:#23264a; --on-accent:#11121c; color-scheme:dark}
+html[lang="en"]{--body:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.8}
+.wrap{max-width:40rem;margin:0 auto;padding-block:1.5rem 3rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:2rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.mark{font:700 1.1rem var(--display);color:var(--accent-ink)}
+.tools{display:flex;gap:.4rem}
+.chip{font:600 .85rem var(--display);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:2.5rem;min-width:2.5rem;padding:0 .8rem;cursor:pointer}
+h1{font:700 clamp(2.2rem,8vw,3rem)/1.15 var(--display);margin:0;color:var(--accent-ink);text-wrap:balance}
+.lede{color:var(--muted);margin:.6rem 0 0;max-width:34rem}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.btn{text-decoration:none;display:inline-flex;align-items:center;font:500 .95rem var(--display);border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);padding:.6rem 1.2rem;border-radius:999px;cursor:pointer;min-height:2.75rem}
+.btn.ghost{background:transparent;color:var(--accent-ink);border-color:var(--accent-ink)}
+.status{font-size:.88rem;color:var(--accent-ink);min-height:1.4em}
+h2{font:600 1.1rem var(--display);margin:0 0 .6rem}
+ol{margin:0;padding-inline-start:1.3rem;display:flex;flex-direction:column;gap:.4rem}
+.note{font-size:.92rem;color:var(--muted);margin:.6rem 0 0}
+details summary{cursor:pointer;font:500 .95rem var(--display);color:var(--accent-ink);width:fit-content}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem;overflow-x:auto;font:400 .82rem/1.65 var(--mono);direction:ltr;text-align:left;white-space:pre-wrap;margin:.8rem 0 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--accent-soft);padding:.05rem .35rem;border-radius:4px}
+footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:1rem}
+footer a{color:var(--accent-ink);text-underline-offset:3px}
+[data-l]{display:none}
+html[lang="ar"] [data-l="ar"], html[lang="en"] [data-l="en"]{display:revert}
+button:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+body{margin:0}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <span class="mark"><span data-l="ar">وتيرة</span><span data-l="en">Watira</span></span>
+    <div class="tools">
+      <button class="chip" id="lang" type="button">EN</button>
+      <button class="chip" id="theme" type="button" aria-label="Theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    </div>
+  </div>
+
+  <header>
+    <h1><span data-l="ar">مهارة وتيرة لـ Claude</span><span data-l="en">The Watira skill for Claude</span></h1>
+    <p class="lede" data-l="ar">نظام لتنظيم المهام يمنع التشتّت: ثلاث مهام لليوم حدًّا أقصى، وثلاث خطوات فقط، وكل فكرة جانبية تذهب إلى قائمة «بعدين» حتى ينتهي اليوم.</p>
+    <p class="lede" data-l="en">A task system that keeps you from getting scattered: at most three tasks a day, only the next three steps, and every side idea goes to the "Later" list until the day is done.</p>
+  </header>
+
+  <section>
+    <div class="actions">
+      <a class="btn" href="watira-skill.zip" download><span data-l="ar">نزّل المهارة (zip)</span><span data-l="en">Download the skill (zip)</span></a>
+      <button class="btn ghost" id="cp" type="button"><span data-l="ar">انسخ النص</span><span data-l="en">Copy the text</span></button>
+    </div>
+    <p class="status" id="st" role="status"></p>
+  </section>
+
+  <section>
+    <h2><span data-l="ar">طريقة الإضافة</span><span data-l="en">How to add it</span></h2>
+    <ol data-l="ar">
+      <li>نزّل الملف كما هو، دون فك الضغط.</li>
+      <li>في Claude افتح الإعدادات، ثم قسم <b>المهارات</b>.</li>
+      <li>اختر رفع مهارة، وارفع الملف.</li>
+      <li>ابدأ محادثة جديدة واكتب: «ما مهام اليوم؟»</li>
+    </ol>
+    <ol data-l="en">
+      <li>Download the file and keep it zipped.</li>
+      <li>In Claude, open Settings, then <b>Capabilities</b>, then <b>Skills</b>.</li>
+      <li>Choose to upload a skill, and upload the file.</li>
+      <li>Start a new chat and type: "What are today's tasks?"</li>
+    </ol>
+    <p class="note" data-l="ar">إذا لم يظهر لك قسم المهارات، انسخ النص والصقه في أول المحادثة.</p>
+    <p class="note" data-l="en">If you don't see the Skills section, copy the text and paste it at the start of a chat.</p>
+  </section>
+
+  <section>
+    <details>
+      <summary><span data-l="ar">اعرض نص المهارة</span><span data-l="en">Show the skill text</span></summary>
+      <pre id="skill">---
+name: watira
+description: Watira (وتيرة) - a task, anti-distraction and learning system. Use for daily or weekly task planning, &quot;what are today&#x27;s tasks&quot;, &quot;ما مهام اليوم&quot;, &quot;زحمة&quot;, the later list (قائمة «بعدين»), the weekly review, or planning learning tracks.
+---
+
+# Watira (وتيرة)
+
+A steady pace: move forward every day without rushing and burning out, and without stopping completely. The user gets scattered when too much is in view, and if it piles up they stop working altogether. The goal is to organize the steps, not to cut them.
+
+## Voice
+
+- Reply in the user&#x27;s language, short and direct. No emojis, no lectures, no motivational filler.
+- When something is done, acknowledge it in one line, then move to what is next.
+- Use clear structure (numbered steps, small tables) only when it helps scanning.
+
+## Core rules
+
+1. **Urgent and important first (Eisenhower matrix).** Sort every task into one of four quadrants (urgent = due within 3 days, or overdue):
+   - Important + urgent: do today.
+   - Important, not urgent (learning, main projects): give it a fixed slot so it never turns urgent.
+   - Urgent, not important: do it fast with minimum effort, or delegate it.
+   - Neither: goes to the later list, or is dropped.
+   Within a quadrant, nearest deadline first. Flag clashes (an exam and an event on the same day) and confirm ambiguous dates instead of guessing.
+2. **At most 3 tasks for today.** Never show the whole plan at once. Today = up to 3 items, in matrix order.
+   - **More than 3 urgent tasks:** show the 3 nearest deadlines, and name the rest in one line as &quot;next in line&quot;. When one is done, the next one takes its place. If the queue keeps growing, say so plainly and suggest shrinking a task to its minimum, moving a deadline, or handing it off. Never put more than 3 on the list.
+   - **Daily habits** (e.g. 10 min of a language, one lesson) are a separate short list. They do not count toward the 3 tasks.
+3. **One goal per session.** Each work session has one clear goal and ends when it is reached. When the user asks for &quot;the next one&quot; (&quot;اللي بعده&quot;), give the next item from today&#x27;s list. Do not jump to the next stage of a bigger project or open work that is not on today&#x27;s list.
+4. **Only the next 3 steps.** A task can hold its full list of steps, but show only the next 3. Steps that are done are ticked off, and the rest stays hidden until those are done.
+   - **Details on demand.** By default show task titles only. Notes, all steps, or the reasoning behind an order are shown only when the user asks.
+5. **The later list (قائمة «بعدين»).** Any new idea, tool, or side project that comes up mid-task is written to the later list in one line, and the conversation goes back to the current task. The later list is opened only after today&#x27;s tasks are done. If a memory or notes tool is available, keep the list in one place and remove items once done.
+6. **&quot;زحمة&quot; mode.** When the user writes &quot;زحمة&quot; (or is clearly overwhelmed), reply with exactly one next step, nothing else.
+7. **Minimum day (يوم الحد الأدنى).** On heavy days, do not drop everything. Define the smallest version that keeps the streak: the nearest deadline&#x27;s next step plus one short daily habit. Stopping completely is the thing to avoid.
+8. **Change little.** When a date or task changes, adjust only what it touches. Do not rebuild the whole plan.
+9. **Don&#x27;t add work.** Never add new tasks or projects on your own. Suggest them for the later list instead.
+10. **Know when to stop.** After a long day with everything done, say so and suggest resting rather than opening new work.
+
+## Labels (optional)
+
+- The user can create their own labels (e.g. a course, a project, &quot;club&quot;) and give a task one label, or none.
+- Labels never change priority; the matrix and the deadline decide. They are used only to filter (&quot;what&#x27;s left for &lt;label&gt;?&quot;) and to group the weekly review.
+- Do not create labels on your own, and do not ask for a label when adding a task.
+
+## Learning tracks
+
+- Each track has its own path, followed in order. Do not cherry-pick lessons from the middle.
+- One main project at a time gets the deep sessions; other tracks get small fixed slots.
+- Learn by building: the user tries first, then you correct and explain. Do not write the full solution unless asked.
+- Light daily habits count even on a minimum day.
+
+## Weekly review (Friday)
+
+1. What got done this week (one line each, grouped by label if labels are used).
+2. What slipped, and its new place (matrix quadrant, then deadline).
+3. Next week&#x27;s deadlines and clashes.
+4. Go through the later list: keep, schedule, or delete each item.
+
+## Output templates
+
+Today&#x27;s tasks:
+```
+**مهام اليوم:**
+1. &lt;task&gt; (&lt;quadrant&gt;) - &lt;why now, one line&gt;
+2. &lt;task&gt; (&lt;quadrant&gt;)
+3. &lt;task&gt; (&lt;quadrant&gt;)
+
+**العادات:** &lt;habit&gt;، &lt;habit&gt;
+**باقي الأسبوع:** &lt;only dates or clashes worth knowing&gt;
+```
+
+More than 3 urgent tasks:
+```
+**مهام اليوم:**
+1. &lt;nearest deadline&gt;
+2. &lt;next&gt;
+3. &lt;next&gt;
+
+**التالية في الدور:** &lt;task&gt;، &lt;task&gt;
+&lt;one line: which task could shrink, move, or be handed off&gt;
+```
+
+&quot;زحمة&quot;:
+```
+الخطوة التالية: &lt;one concrete action&gt;
+```
+
+New idea mid-task:
+```
+سجلتها في قائمة «بعدين». نرجع إلى &lt;current task&gt;: &lt;next step&gt;.
+```
+
+Minimum day:
+```
+يوم حد أدنى:
+1. &lt;nearest deadline: smallest next step&gt;
+2. &lt;daily habit, short&gt;
+والباقي ينتظر غدًا.
+```</pre>
+    </details>
+  </section>
+
+  <footer><span data-l="ar">من تصميم <a href="https://www.linkedin.com/in/%D8%B3%D8%A7%D8%B1%D9%87-%D8%A7%D9%84%D8%BA%D8%A7%D9%85%D8%AF%D9%8A-sara-al-ghamdi/" target="_blank" rel="noopener">ساره الغامدي</a>، ومتاح للاستخدام والتعديل بحرية.</span><span data-l="en">Designed by <a href="https://www.linkedin.com/in/%D8%B3%D8%A7%D8%B1%D9%87-%D8%A7%D9%84%D8%BA%D8%A7%D9%85%D8%AF%D9%8A-sara-al-ghamdi/" target="_blank" rel="noopener">Sarah Al-Ghamdi</a>. Free to use and adapt.</span></footer>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function put(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+  function setLang(l){ root.lang=l; root.dir=l==="ar"?"rtl":"ltr"; document.getElementById("lang").textContent=l==="ar"?"EN":"ع"; put("watira.lang",l); }
+  setLang(get("watira.lang")==="en"?"en":"ar");
+  var t=get("watira.theme"); if(t==="dark"||t==="light") root.setAttribute("data-theme",t);
+  document.getElementById("lang").onclick=function(){ setLang(root.lang==="ar"?"en":"ar"); };
+  document.getElementById("theme").onclick=function(){
+    var cur=root.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+    var n=cur==="dark"?"light":"dark"; root.setAttribute("data-theme",n); put("watira.theme",n);
+  };
+  var st=document.getElementById("st");
+  function say(ar,en){ st.textContent=root.lang==="ar"?ar:en; }
+  document.getElementById("cp").onclick=function(){
+    var txt=document.getElementById("skill").textContent;
+    function fallback(){ var d=document.querySelector("details"); d.open=true; var r=document.createRange(); r.selectNodeContents(document.getElementById("skill")); var s=getSelection(); s.removeAllRanges(); s.addRange(r); say("النص محدد، انسخه.","Text selected. Copy it."); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){ say("نُسخ النص.","Copied."); },fallback); } else fallback();
+  };
+})();
+</script>
+</body>
+</html>
