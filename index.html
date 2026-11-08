@@ -3,100 +3,271 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="وتيرة: نظّم مهامك مع الذكاء الاصطناعي، دون أن تتشتت.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>مهارة وتيرة</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<title>وتيرة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
 :root{
   --bg:#f1f1f6; --surface:#ffffff; --ink:#16182b; --muted:#5d6178; --line:#dcdde8;
-  --accent:#a9b0ff; --accent-ink:#4f55a8; --accent-soft:#e8e9fb; --on-accent:#16182b;
+  --accent:#a9b0ff; --accent-ink:#4f55a8; --accent-soft:#e8e9fb; --on-accent:#16182b; --beat:#e9b908;
   --display:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
   --body:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#11121c; --surface:#1a1c2a; --ink:#e8e9f3; --muted:#9a9db5; --line:#2b2e42;
-  --accent:#9aa3ff; --accent-ink:#9aa3ff; --accent-soft:#23264a; --on-accent:#11121c; color-scheme:dark}}
+  --accent:#9aa3ff; --accent-ink:#9aa3ff; --accent-soft:#23264a; --on-accent:#11121c; --beat:#f3cf3e; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#11121c; --surface:#1a1c2a; --ink:#e8e9f3; --muted:#9a9db5; --line:#2b2e42;
-  --accent:#9aa3ff; --accent-ink:#9aa3ff; --accent-soft:#23264a; --on-accent:#11121c; color-scheme:dark}
+  --accent:#9aa3ff; --accent-ink:#9aa3ff; --accent-soft:#23264a; --on-accent:#11121c; --beat:#f3cf3e; color-scheme:dark}
 html[lang="en"]{--body:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,sans-serif}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.8}
-.wrap{max-width:40rem;margin:0 auto;padding-block:1.5rem 3rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:2rem}
-.top{display:flex;justify-content:space-between;align-items:center;gap:1rem}
-.mark{font:700 1.1rem var(--display);color:var(--accent-ink)}
-.tools{display:flex;gap:.4rem}
-.chip{font:600 .85rem var(--display);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:2.5rem;min-width:2.5rem;padding:0 .8rem;cursor:pointer}
-h1{font:700 clamp(2.2rem,8vw,3rem)/1.15 var(--display);margin:0;color:var(--accent-ink);text-wrap:balance}
-.lede{color:var(--muted);margin:.6rem 0 0;max-width:34rem}
-.actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
-.btn{text-decoration:none;display:inline-flex;align-items:center;font:500 .95rem var(--display);border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);padding:.6rem 1.2rem;border-radius:999px;cursor:pointer;min-height:2.75rem}
-.btn.ghost{background:transparent;color:var(--accent-ink);border-color:var(--accent-ink)}
-.status{font-size:.88rem;color:var(--accent-ink);min-height:1.4em}
-h2{font:600 1.1rem var(--display);margin:0 0 .6rem}
-ol{margin:0;padding-inline-start:1.3rem;display:flex;flex-direction:column;gap:.4rem}
-.note{font-size:.92rem;color:var(--muted);margin:.6rem 0 0}
-details summary{cursor:pointer;font:500 .95rem var(--display);color:var(--accent-ink);width:fit-content}
-pre{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem;overflow-x:auto;font:400 .82rem/1.65 var(--mono);direction:ltr;text-align:left;white-space:pre-wrap;margin:.8rem 0 0}
-code{font-family:var(--mono);font-size:.88em;background:var(--accent-soft);padding:.05rem .35rem;border-radius:4px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:40rem;margin:0 auto;padding-block:1.25rem 3rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:2.75rem}
+html[lang="ar"] [data-l="en"], html[lang="en"] [data-l="ar"]{display:none!important}
+
+/* top bar */
+.top{display:flex;justify-content:flex-end;gap:.4rem}
+.chip{font:600 .85rem var(--display);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:2.75rem;min-width:2.75rem;padding:0 .9rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+
+/* hero */
+.hero{display:flex;flex-direction:column;gap:.6rem}
+.brand{display:flex;align-items:center;gap:.75rem}
+.logo{display:flex;gap:4px;align-items:flex-end;height:2.4rem}
+.logo i{width:6px;height:100%;border-radius:3px;background:var(--beat)}
+.logo i:last-child{background:var(--line)}
+h1{font:700 clamp(2.6rem,10vw,3.6rem)/1 var(--display);margin:0;color:var(--accent-ink)}
+.tag{font:500 1.15rem/1.6 var(--display);margin:0;text-wrap:balance}
+.sub{margin:0;color:var(--muted)}
+
+/* setup card */
+.setup{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.25rem;display:flex;flex-direction:column;gap:1.1rem}
+.setup h2{font:600 1.05rem var(--display);margin:0}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--bg);border-radius:12px;padding:4px}
+.tab{font:500 .95rem var(--display);border:0;background:transparent;color:var(--muted);border-radius:9px;min-height:2.75rem;cursor:pointer;padding:.4rem .6rem}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08),0 0 0 1px var(--line)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1rem;counter-reset:s}
+.steps>li{display:grid;grid-template-columns:2rem 1fr;gap:.75rem;align-items:start;counter-increment:s}
+.steps>li::before{content:counter(s);width:2rem;height:2rem;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);font:600 .9rem/2rem var(--display);text-align:center}
+.step{display:flex;flex-direction:column;gap:.5rem;min-width:0;padding-top:.15rem}
+.step b{font-family:var(--display);font-weight:600}
+.hint{color:var(--muted);font-size:.9rem}
+.btn{font:500 .95rem var(--display);border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);padding:.5rem 1.2rem;border-radius:999px;cursor:pointer;min-height:2.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;width:fit-content;transition:transform .12s ease-out}
+.btn:active{transform:scale(.97)}
+.btn svg{flex:none}
+.status{font-size:.88rem;color:var(--accent-ink);margin:0}
+.status:empty{display:none}
+q.say{quotes:"«" "»";font-family:var(--display);font-weight:600;background:var(--accent-soft);color:var(--accent-ink);padding:.1rem .5rem;border-radius:6px}
+html[lang="en"] q.say{quotes:"\201C" "\201D"}
+details summary{cursor:pointer;font:500 .9rem var(--display);color:var(--accent-ink);width:fit-content;min-height:2.75rem;display:flex;align-items:center}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:1rem;font:400 .82rem/1.7 var(--mono);white-space:pre-wrap;margin:0;max-height:20rem;overflow:auto}
+pre.ar{font-family:var(--body);font-size:.9rem}
+pre.ltr{direction:ltr;text-align:left}
+
+/* sections */
+section h2.title{font:600 1.25rem var(--display);margin:0 0 1rem;text-wrap:balance}
+.cmds{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.cmd{display:grid;grid-template-columns:minmax(7.5rem,auto) 1fr;gap:.4rem 1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.cmd dt{margin:0}
+.cmd dd{margin:0;color:var(--muted)}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem;display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.pillar strong{font:700 1.6rem/1 var(--display);color:var(--accent-ink)}
+.pillar span{font-size:.9rem;color:var(--muted)}
+@media (max-width:520px){
+  .pillars{grid-template-columns:1fr}
+  .pillar{flex-direction:row;align-items:baseline;gap:.75rem}
+  .cmd{grid-template-columns:1fr}
+}
 footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:1rem}
 footer a{color:var(--accent-ink);text-underline-offset:3px}
-[data-l]{display:none}
-html[lang="ar"] [data-l="ar"], html[lang="en"] [data-l="en"]{display:revert}
-button:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
-body{margin:0}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}.btn:active{transform:none}}
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <div class="top">
-    <span class="mark"><span data-l="ar">وتيرة</span><span data-l="en">Watira</span></span>
-    <div class="tools">
-      <button class="chip" id="lang" type="button">EN</button>
-      <button class="chip" id="theme" type="button" aria-label="Theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
-    </div>
+    <button class="chip" id="lang" type="button" aria-label="Language">EN</button>
+    <button class="chip" id="theme" type="button" aria-label="Theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
   </div>
 
-  <header>
-    <h1><span data-l="ar">مهارة وتيرة لـ Claude</span><span data-l="en">The Watira skill for Claude</span></h1>
-    <p class="lede" data-l="ar">نظام لتنظيم المهام يمنع التشتّت: ثلاث مهام لليوم حدًّا أقصى، وثلاث خطوات فقط، وكل فكرة جانبية تذهب إلى قائمة «بعدين» حتى ينتهي اليوم.</p>
-    <p class="lede" data-l="en">A task system that keeps you from getting scattered: at most three tasks a day, only the next three steps, and every side idea goes to the "Later" list until the day is done.</p>
+  <header class="hero">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <h1><span data-l="ar">وتيرة</span><span data-l="en">Watira</span></h1>
+    </div>
+    <p class="tag"><span data-l="ar">نظّم مهامك مع الذكاء الاصطناعي، دون أن تتشتت.</span><span data-l="en">Organize your tasks with AI, without getting scattered.</span></p>
+    <p class="sub"><span data-l="ar">ترى ثلاث مهام فقط في اليوم، والباقي ينتظر دوره.</span><span data-l="en">You see three tasks a day. The rest waits its turn.</span></p>
   </header>
 
-  <section>
-    <div class="actions">
-      <a class="btn" href="watira-skill.zip" download><span data-l="ar">نزّل المهارة (zip)</span><span data-l="en">Download the skill (zip)</span></a>
-      <button class="btn ghost" id="cp" type="button"><span data-l="ar">انسخ النص</span><span data-l="en">Copy the text</span></button>
+  <section class="setup" aria-labelledby="setup-h">
+    <h2 id="setup-h"><span data-l="ar">ابدأ في دقيقة</span><span data-l="en">Set it up in a minute</span></h2>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-any" aria-controls="p-any" type="button"><span data-l="ar">أي ذكاء اصطناعي</span><span data-l="en">Any AI</span></button>
+      <button class="tab" role="tab" id="tab-claude" aria-controls="p-claude" type="button">Claude</button>
     </div>
-    <p class="status" id="st" role="status"></p>
+
+    <div id="p-any" role="tabpanel" aria-labelledby="tab-any">
+      <ol class="steps">
+        <li><div class="step">
+          <b><span data-l="ar">انسخ النص</span><span data-l="en">Copy the prompt</span></b>
+          <button class="btn" id="cp-prompt" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-l="ar">انسخ</span><span data-l="en">Copy</span></button>
+          <p class="status" id="st-prompt" role="status"></p>
+        </div></li>
+        <li><div class="step">
+          <b><span data-l="ar">الصقه في محادثة جديدة</span><span data-l="en">Paste it into a new chat</span></b>
+          <span class="hint"><span data-l="ar">يعمل مع ChatGPT وGemini وغيرهما. ولتستخدمه دائمًا دون لصق، ضعه في التعليمات المخصصة.</span><span data-l="en">Works with ChatGPT, Gemini and others. To keep it on without pasting, put it in custom instructions.</span></span>
+        </div></li>
+        <li><div class="step">
+          <b><span data-l="ar">اكتب</span><span data-l="en">Type</span> <q class="say"><span data-l="ar">ما مهام اليوم؟</span><span data-l="en">What are today's tasks?</span></q></b>
+        </div></li>
+      </ol>
+      <details>
+        <summary><span data-l="ar">اقرأ النص قبل نسخه</span><span data-l="en">Read the prompt first</span></summary>
+        <pre class="ar" dir="rtl" id="prompt-ar" data-l="ar">أنت مساعدي في تنظيم المهام وفق نظام «وتيرة». الهدف أن أتقدم كل يوم بخطى ثابتة، دون أن أتشتت أو أندفع ثم أنهار وأتوقف. أتشتت حين أرى أشياء كثيرة دفعة واحدة، فالمطلوب تنظيم الخطوات لا تقليلها.
+
+القواعد:
+1. المهم العاجل أولًا (مصفوفة أيزنهاور): صنّف كل مهمة في واحد من أربعة أقسام:
+   - مهم وعاجل: يُنفَّذ اليوم.
+   - مهم غير عاجل (التعلّم والمشاريع): يُحدَّد له وقت ثابت حتى لا يصبح عاجلًا.
+   - عاجل غير مهم: يُنجز بسرعة وبأقل جهد، أو يُفوَّض.
+   - لا مهم ولا عاجل: يذهب إلى قائمة «بعدين» أو يُحذف.
+   وتُعدّ المهمة عاجلة إذا كان موعدها خلال ثلاثة أيام أو فات. وداخل كل قسم، الأقرب موعدًا أولًا. نبّهني إلى أي تعارض بين موعدين، واسألني عن أي تاريخ غير واضح بدل التخمين.
+2. ثلاث مهام لليوم حدًّا أقصى، بترتيب المصفوفة. لا تعرض الخطة كاملة دفعة واحدة.
+   - إذا زادت المهام العاجلة عن ثلاث: اعرض الثلاث الأقرب موعدًا، واذكر البقية في سطر واحد بعنوان «التالية في الدور». كلما أنهيت مهمة، تأخذ التي بعدها مكانها. وإذا استمر الدور في الطول، قل ذلك بوضوح واقترح تصغير مهمة إلى حدها الأدنى، أو تأجيل موعد، أو تفويضها. ولا تضع في القائمة أكثر من ثلاث.
+   - العادات اليومية (مثل 10 دقائق لغة، أو درس واحد) قائمة قصيرة مستقلة، ولا تُحسب من المهام الثلاث.
+3. هدف واحد لكل جلسة عمل، وتنتهي الجلسة حين يتحقق. وإذا قلت «اللي بعده»، فأعطني المهمة التالية من قائمة اليوم، ولا تنتقل إلى المرحلة التالية من مشروع أكبر، ولا تفتح عملًا ليس في قائمة اليوم.
+4. الخطوات الثلاث التالية فقط: يمكن أن تحمل المهمة قائمة خطواتها كاملة، لكن اعرض الثلاث التالية فقط. الخطوة المنجزة تُشطب، ويبقى الباقي مخفيًا حتى أنهي ما قبله.
+   - التفاصيل عند الطلب: اعرض عناوين المهام فقط، ولا تعرض الملاحظات أو الخطوات كلها أو سبب الترتيب إلا إذا طلبتها.
+5. قائمة «بعدين»: أي فكرة أو أداة أو مشروع جانبي يظهر أثناء العمل يُسجَّل في سطر واحد في «قائمة «بعدين»»، ثم نعود إلى المهمة الحالية. ولا نفتح القائمة إلا بعد إنهاء مهام اليوم. احتفظ بها واعرضها عندما أطلب.
+6. كلمة «زحمة»: إذا كتبتها، أجب بخطوة واحدة فقط، دون قائمة ولا شرح.
+7. يوم الحد الأدنى: في الأيام الثقيلة لا أتوقف كليًا. حدّد أصغر نسخة من اليوم: الخطوة التالية لأقرب موعد، وعادة يومية قصيرة.
+8. عند تغيّر موعد أو مهمة، عدّل ما يتأثر فقط، ولا تُعِد بناء الخطة كلها.
+9. لا تُضِف مهامًا أو مشاريع من عندك، واقترحها لقائمة «بعدين» بدلًا من ذلك.
+10. إذا أنهيت مهام اليوم بعد يوم طويل، قل ذلك واقترح الراحة بدل فتح عمل جديد.
+
+التصنيفات (اختيارية):
+- يمكنني إنشاء تصنيفات خاصة بي (مثل مادة أو مشروع أو «النادي»)، وإعطاء المهمة تصنيفًا واحدًا أو تركها بلا تصنيف.
+- التصنيف لا يغيّر الأولوية؛ المصفوفة والموعد هما ما يحددها. يُستخدم فقط للتصفية («وش باقي في &lt;التصنيف&gt;؟») ولتجميع المراجعة الأسبوعية.
+- لا تنشئ تصنيفات من عندك، ولا تسألني عن تصنيف عند إضافة مهمة.
+
+التعلّم:
+- لكل مسار تعلّم ترتيبه، ونمشي عليه بالتسلسل دون انتقاء دروس من المنتصف.
+- مشروع رئيسي واحد في كل فترة يأخذ الجلسات العميقة، وبقية المسارات لها أوقات قصيرة ثابتة.
+- أتعلم بالبناء: أحاول أولًا، ثم تصحّح وتشرح. لا تكتب الحل كاملًا إلا إذا طلبت.
+
+المراجعة الأسبوعية (يوم الجمعة):
+1. ما أُنجز هذا الأسبوع، سطرًا لكل بند، مجمّعًا حسب التصنيف إن وُجد.
+2. ما تأخر، ومكانه الجديد حسب المصفوفة والموعد.
+3. مواعيد الأسبوع القادم وتعارضاتها.
+4. مراجعة قائمة «بعدين»: إبقاء كل بند أو جدولته أو حذفه.
+
+الأسلوب: ردود قصيرة ومباشرة بلغتي، بلا رموز تعبيرية ولا عبارات تحفيزية عامة. عند إنجاز شيء، اذكره في سطر واحد ثم انتقل إلى ما بعده.
+
+صيغ الردود:
+- عند «ما مهام اليوم؟»: حتى ثلاث مهام مرتبة، بجانب كل مهمة قسمها في المصفوفة، مع سبب مختصر للأولى، ثم سطر بالعادات اليومية، ثم سطر بمواعيد الأسبوع المهمة.
+- إذا زادت العاجلة عن ثلاث: الثلاث الأقرب، ثم «التالية في الدور: ...»، ثم سطر بما يمكن تصغيره أو تأجيله أو تفويضه.
+- عند «زحمة»: «الخطوة التالية: ...».
+- عند فكرة جانبية: «سجلتها في قائمة «بعدين». نرجع إلى ...: ...».
+- في يوم الحد الأدنى: الخطوة الأصغر لأقرب موعد، ثم العادة اليومية، ثم «والباقي ينتظر غدًا».
+
+ابدأ بسؤالي عن مواعيدي القريبة ومسارات التعلّم الحالية.</pre>
+        <pre class="ltr" id="prompt-en" data-l="en">You are my task assistant, following the &quot;Watira&quot; system. The goal is to move forward every day at a steady pace, without getting scattered, rushing, burning out and then stopping. I get scattered when I see too much at once, so the job is to organize the steps, not to cut them.
+
+Rules:
+1. Urgent and important first (Eisenhower matrix). Put every task in one of four groups:
+   - Important and urgent: do it today.
+   - Important, not urgent (learning and projects): give it a fixed slot so it never becomes urgent.
+   - Urgent, not important: do it quickly with minimum effort, or hand it off.
+   - Neither: it goes to the &quot;Later&quot; list, or it is dropped.
+   Within each group, nearest deadline first. A task is urgent if it is due within three days or overdue. Warn me about any clash between two deadlines, and ask me about any unclear date instead of guessing.
+2. At most three tasks for today, in matrix order. Never show the whole plan at once.
+   - If more than three tasks are urgent: show the three nearest deadlines, and name the rest in one line as &quot;Next in line&quot;. When I finish one, the next takes its place. If the queue keeps growing, say so plainly and suggest shrinking a task to its minimum, moving a deadline, or handing it off. Never put more than three on the list.
+   - Daily habits (like 10 minutes of a language, or one lesson) are a separate short list and do not count toward the three tasks.
+3. One goal per work session. The session ends when the goal is reached. When I ask for &quot;the next one&quot;, give me the next task from today&#x27;s list. Do not jump to the next stage of a bigger project or open work that is not on today&#x27;s list.
+4. Only the next three steps: a task can hold its full list of steps, but show only the next three. Finished steps are ticked off, and the rest stays hidden until I finish the ones before.
+   - Details on demand: show task titles only. Show notes, all steps, or the reason for an order only when I ask.
+5. The &quot;Later&quot; list: any idea, tool or side project that comes up while I work is written in one line on the &quot;Later&quot; list, then we go back to the current task. We open the list only after today&#x27;s tasks are done. Keep it and show it when I ask.
+6. &quot;Swamped&quot;: if I write this word, answer with exactly one next step, with no list and no explanation.
+7. Minimum day: on heavy days I do not stop completely. Define the smallest version of the day: the next step toward the nearest deadline, and one short daily habit.
+8. When a date or task changes, adjust only what it affects. Do not rebuild the whole plan.
+9. Do not add tasks or projects on your own. Suggest them for the &quot;Later&quot; list instead.
+10. If I finish today&#x27;s tasks after a long day, say so and suggest rest instead of opening new work.
+
+Labels (optional):
+- I can create my own labels (like a course, a project, or &quot;club&quot;) and give a task one label, or none.
+- Labels never change priority; the matrix and the deadline decide that. They are only for filtering (&quot;what&#x27;s left for &lt;label&gt;?&quot;) and for grouping the weekly review.
+- Do not create labels on your own, and do not ask me for a label when I add a task.
+
+Learning:
+- Each learning track has its own order, and we follow it step by step without picking lessons from the middle.
+- One main project at a time gets the deep sessions. Other tracks get short, fixed slots.
+- I learn by building: I try first, then you correct and explain. Do not write the full solution unless I ask.
+
+Weekly review (every Friday):
+1. What got done this week, one line each, grouped by label if I use labels.
+2. What slipped, and its new place by matrix group and deadline.
+3. Next week&#x27;s deadlines and clashes.
+4. Go through the &quot;Later&quot; list: keep, schedule or delete each item.
+
+Style: short, direct replies in my language, with no emojis and no generic motivation. When I finish something, mention it in one line, then move on.
+
+Reply formats:
+- &quot;What are today&#x27;s tasks?&quot;: up to three tasks in order, each with its matrix group, a short reason for the first one, then one line with my daily habits, then one line with this week&#x27;s important dates.
+- More than three urgent: the nearest three, then &quot;Next in line: ...&quot;, then one line on what could shrink, move or be handed off.
+- &quot;Swamped&quot;: &quot;Next step: ...&quot;.
+- A side idea: &quot;Added to the Later list. Back to ...: ...&quot;.
+- Minimum day: the smallest step toward the nearest deadline, then the daily habit, then &quot;Everything else can wait for tomorrow.&quot;
+
+Start by asking me about my upcoming deadlines and current learning tracks.</pre>
+      </details>
+    </div>
+
+    <div id="p-claude" role="tabpanel" aria-labelledby="tab-claude" hidden>
+      <ol class="steps">
+        <li><div class="step">
+          <b><span data-l="ar">نزّل المهارة</span><span data-l="en">Download the skill</span></b>
+          <a class="btn" href="watira-skill.zip" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-l="ar">نزّل</span><span data-l="en">Download</span></a>
+          <span class="hint"><span data-l="ar">لا تفك ضغط الملف.</span><span data-l="en">Keep the file zipped.</span></span>
+          <p class="status" id="st-skill" role="status"></p>
+        </div></li>
+        <li><div class="step">
+          <b><span data-l="ar">ارفعها في Claude</span><span data-l="en">Upload it to Claude</span></b>
+          <span class="hint"><span data-l="ar">من الإعدادات، افتح قسم المهارات وارفع الملف.</span><span data-l="en">In Settings, open the Skills section and upload the file.</span></span>
+        </div></li>
+        <li><div class="step">
+          <b><span data-l="ar">اكتب في أي محادثة</span><span data-l="en">In any chat, type</span> <q class="say"><span data-l="ar">ما مهام اليوم؟</span><span data-l="en">What are today's tasks?</span></q></b>
+        </div></li>
+      </ol>
+    </div>
   </section>
 
-  <section>
-    <h2><span data-l="ar">طريقة الإضافة</span><span data-l="en">How to add it</span></h2>
-    <ol data-l="ar">
-      <li>نزّل الملف كما هو، دون فك الضغط.</li>
-      <li>في Claude افتح الإعدادات، ثم قسم <b>المهارات</b>.</li>
-      <li>اختر رفع مهارة، وارفع الملف.</li>
-      <li>ابدأ محادثة جديدة واكتب: «ما مهام اليوم؟»</li>
-    </ol>
-    <ol data-l="en">
-      <li>Download the file and keep it zipped.</li>
-      <li>In Claude, open Settings, then <b>Capabilities</b>, then <b>Skills</b>.</li>
-      <li>Choose to upload a skill, and upload the file.</li>
-      <li>Start a new chat and type: "What are today's tasks?"</li>
-    </ol>
-    <p class="note" data-l="ar">إذا لم يظهر لك قسم المهارات، انسخ النص والصقه في أول المحادثة.</p>
-    <p class="note" data-l="en">If you don't see the Skills section, copy the text and paste it at the start of a chat.</p>
+  <section aria-labelledby="cmds-h">
+    <h2 class="title" id="cmds-h"><span data-l="ar">ما تكتبه بعدها</span><span data-l="en">What to type after that</span></h2>
+    <dl class="cmds">
+      <div class="cmd"><dt><q class="say"><span data-l="ar">ما مهام اليوم؟</span><span data-l="en">What are today's tasks?</span></q></dt><dd><span data-l="ar">ثلاث مهام مرتبة حسب الأهمية والموعد.</span><span data-l="en">Three tasks, ordered by importance and deadline.</span></dd></div>
+      <div class="cmd"><dt><q class="say"><span data-l="ar">زحمة</span><span data-l="en">Swamped</span></q></dt><dd><span data-l="ar">حين يثقل كل شيء: خطوة واحدة فقط.</span><span data-l="en">When it all feels heavy: one step, nothing else.</span></dd></div>
+      <div class="cmd"><dt><q class="say"><span data-l="ar">بعدين: …</span><span data-l="en">Later: …</span></q></dt><dd><span data-l="ar">فكرة جانبية تُحفظ لما بعد مهام اليوم، وترجع لعملك.</span><span data-l="en">A side idea is saved for after today's tasks, and you get back to work.</span></dd></div>
+      <div class="cmd"><dt><q class="say"><span data-l="ar">يوم ثقيل</span><span data-l="en">Heavy day</span></q></dt><dd><span data-l="ar">أصغر نسخة من يومك، بدل أن تتوقف.</span><span data-l="en">The smallest version of your day, instead of stopping.</span></dd></div>
+    </dl>
   </section>
 
-  <section>
-    <details>
-      <summary><span data-l="ar">اعرض نص المهارة</span><span data-l="en">Show the skill text</span></summary>
-      <pre id="skill">---
+  <section aria-labelledby="idea-h">
+    <h2 class="title" id="idea-h"><span data-l="ar">العمل كما هو، لكنك لا ترى إلا ما يلزم الآن</span><span data-l="en">The work stays the same. You only see what you need now</span></h2>
+    <div class="pillars">
+      <div class="pillar"><strong>3</strong><span><span data-l="ar">مهام لليوم، الأهم والأقرب موعدًا أولًا</span><span data-l="en">tasks a day, most urgent first</span></span></div>
+      <div class="pillar"><strong>3</strong><span><span data-l="ar">خطوات فقط من كل مهمة</span><span data-l="en">steps of each task at a time</span></span></div>
+      <div class="pillar"><strong>1</strong><span><span data-l="ar">قائمة «بعدين» لكل فكرة جانبية</span><span data-l="en">"Later" list for every side idea</span></span></div>
+    </div>
+  </section>
+
+  <footer><span data-l="ar">من تصميم <a href="https://www.linkedin.com/in/%D8%B3%D8%A7%D8%B1%D9%87-%D8%A7%D9%84%D8%BA%D8%A7%D9%85%D8%AF%D9%8A-sara-al-ghamdi/" target="_blank" rel="noopener">ساره الغامدي</a>، ومتاح للاستخدام والتعديل بحرية.</span><span data-l="en">Designed by <a href="https://www.linkedin.com/in/%D8%B3%D8%A7%D8%B1%D9%87-%D8%A7%D9%84%D8%BA%D8%A7%D9%85%D8%AF%D9%8A-sara-al-ghamdi/" target="_blank" rel="noopener">Sarah Al-Ghamdi</a>. Free to use and adapt.</span></footer>
+  <pre id="skill" hidden>---
 name: watira
 description: Watira (وتيرة) - a task, anti-distraction and learning system. Use for daily or weekly task planning, &quot;what are today&#x27;s tasks&quot;, &quot;ما مهام اليوم&quot;, &quot;زحمة&quot;, the later list (قائمة «بعدين»), the weekly review, or planning learning tracks.
 ---
@@ -193,10 +364,6 @@ Minimum day:
 2. &lt;daily habit, short&gt;
 والباقي ينتظر غدًا.
 ```</pre>
-    </details>
-  </section>
-
-  <footer><span data-l="ar">من تصميم <a href="https://www.linkedin.com/in/%D8%B3%D8%A7%D8%B1%D9%87-%D8%A7%D9%84%D8%BA%D8%A7%D9%85%D8%AF%D9%8A-sara-al-ghamdi/" target="_blank" rel="noopener">ساره الغامدي</a>، ومتاح للاستخدام والتعديل بحرية.</span><span data-l="en">Designed by <a href="https://www.linkedin.com/in/%D8%B3%D8%A7%D8%B1%D9%87-%D8%A7%D9%84%D8%BA%D8%A7%D9%85%D8%AF%D9%8A-sara-al-ghamdi/" target="_blank" rel="noopener">Sarah Al-Ghamdi</a>. Free to use and adapt.</span></footer>
 </div>
 
 <script>
@@ -212,13 +379,24 @@ Minimum day:
     var cur=root.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
     var n=cur==="dark"?"light":"dark"; root.setAttribute("data-theme",n); put("watira.theme",n);
   };
-  var st=document.getElementById("st");
-  function say(ar,en){ st.textContent=root.lang==="ar"?ar:en; }
-  document.getElementById("cp").onclick=function(){
-    var txt=document.getElementById("skill").textContent;
-    function fallback(){ var d=document.querySelector("details"); d.open=true; var r=document.createRange(); r.selectNodeContents(document.getElementById("skill")); var s=getSelection(); s.removeAllRanges(); s.addRange(r); say("النص محدد، انسخه.","Text selected. Copy it."); }
-    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){ say("نُسخ النص.","Copied."); },fallback); } else fallback();
-  };
+  var tabs=[document.getElementById("tab-any"),document.getElementById("tab-claude")];
+  function pick(i,focus){
+    tabs.forEach(function(b,j){ var on=i===j; b.setAttribute("aria-selected",on?"true":"false"); b.tabIndex=on?0:-1; document.getElementById(b.getAttribute("aria-controls")).hidden=!on; });
+    if(focus) tabs[i].focus(); put("watira.setup",i===1?"claude":"any");
+  }
+  tabs.forEach(function(b,i){
+    b.onclick=function(){ pick(i); };
+    b.onkeydown=function(e){ if(e.key==="ArrowLeft"||e.key==="ArrowRight"){ e.preventDefault(); pick(i===0?1:0,true); } };
+  });
+  pick(get("watira.setup")==="claude"?1:0);
+  function say(id,ar,en){ document.getElementById(id).textContent=root.lang==="ar"?ar:en; }
+  function copy(el,stId){
+    var txt=el.textContent;
+    function fallback(){ var d=el.closest("details"); if(d) d.open=true; var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); say(stId,"النص محدد. انسخه.","Text selected. Copy it."); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){ say(stId,"نُسخ. الصقه الآن في محادثة جديدة.","Copied. Now paste it into a new chat."); },fallback); } else fallback();
+  }
+  document.getElementById("cp-prompt").onclick=function(){ copy(document.getElementById(root.lang==="ar"?"prompt-ar":"prompt-en"),"st-prompt"); };
+  
 })();
 </script>
 </body>
